@@ -33,6 +33,51 @@
             color: white;
             padding: 40px;
             text-align: center;
+            padding-bottom: 20px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: linear-gradient(135deg, #5568d3 0%, #65398b 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .header h1 {
@@ -220,6 +265,17 @@
             .vo-text {
                 font-size: 1em;
             }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            nav a {
+                width: 200px;
+                text-align: center;
+            }
         }
 
         @media print {
@@ -244,7 +300,18 @@
         <div class="header">
             <h1>🎙️ Voice-Over Script</h1>
             <div class="subtitle">Anti-Hype AI Learning Video (Day 1)</div>
-            
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/">🏠 Home</a></li>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/prompter.html">🎬 Prompter</a></li>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/voice-over.html" class="active">🎙️ Voice-Over</a></li>
+                <li><a href="https://github.com/rifaterdemsahin/VideoProductionPlanNovemberWeek3" target="_blank">📦 GitHub Repo</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
             <div class="project-info">
                 <div class="info-grid">
                     <div class="info-item">
@@ -265,9 +332,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="content">
             <div class="statistics">
                 <div class="stat-card">
                     <div class="stat-value">60s</div>
