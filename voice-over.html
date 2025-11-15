@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice-Over Script - Anti-Hype AI Learning Video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .project-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .project-info .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .vo-script {
+            margin-bottom: 40px;
+        }
+
+        .vo-cue {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .vo-cue:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .vo-cue-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .vo-time {
+            display: inline-block;
+            background: #764ba2;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .vo-text {
+            font-size: 1.15em;
+            line-height: 1.6;
+            color: #333;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .vo-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .notes {
+            background: #fff9e6;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .notes h3 {
+            color: #f57c00;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .notes ul {
+            list-style-position: inside;
+            line-height: 1.8;
+        }
+
+        .notes li {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #dee2e6;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .vo-cue {
+                padding: 15px;
+            }
+
+            .vo-text {
+                font-size: 1em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .vo-cue:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎙️ Voice-Over Script</h1>
+            <div class="subtitle">Anti-Hype AI Learning Video (Day 1)</div>
+            
+            <div class="project-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Project</span>
+                        <span class="info-value">Anti-Hype AI Learning Video</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="info-value">PRODUCTION READY</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Primary Asset</span>
+                        <span class="info-value">Delivery Pilot</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Date</span>
+                        <span class="info-value">2025-11-15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="statistics">
+                <div class="stat-card">
+                    <div class="stat-value">60s</div>
+                    <div class="stat-label">VO Spine Duration</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">90s</div>
+                    <div class="stat-label">Total Video Runtime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Voice-Over Cues</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">145</div>
+                    <div class="stat-label">Words Per Minute</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">📝 VO Script (60-Second Spine)</h2>
+            
+            <div class="vo-script">
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">1</span>
+                        <span class="vo-time">0:00–0:03</span>
+                    </div>
+                    <div class="vo-text">
+                        "Stuck in the AI boom and don't know where to start?"
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">2</span>
+                        <span class="vo-time">0:03–0:08</span>
+                    </div>
+                    <div class="vo-text">
+                        "In 60 seconds, I'll give you a learning starter that teaches you real AI—not just copy-paste."
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">3</span>
+                        <span class="vo-time">0:08–0:15</span>
+                    </div>
+                    <div class="vo-text">
+                        "Everyone says 'learn AI'—but where do you actually begin? You need a foundation you can understand and build on."
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">4</span>
+                        <span class="vo-time">0:15–0:25</span>
+                    </div>
+                    <div class="vo-text">
+                        "This Build-Your-Own-Model template isn't finished code—it's your learning lab. Every line is commented to explain what it does and why."
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">5</span>
+                        <span class="vo-time">0:25–0:35</span>
+                    </div>
+                    <div class="vo-text">
+                        "Fork it. Read the comments. Change one function. Break it. Fix it. That's how you actually learn. It's called Delivery Pilot—your AI training ground."
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">6</span>
+                        <span class="vo-time">0:35–0:45</span>
+                    </div>
+                    <div class="vo-text">
+                        "Deploy it locally—your private practice environment. Make mistakes. That's the point."
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">7</span>
+                        <span class="vo-time">0:45–0:55</span>
+                    </div>
+                    <div class="vo-text">
+                        "This is Day 1 of understanding AI. Not the finish line. Customize it. Study it. Make it yours over the next week."
+                    </div>
+                </div>
+
+                <div class="vo-cue">
+                    <div class="vo-header">
+                        <span class="vo-cue-number">8</span>
+                        <span class="vo-time">0:55–1:00</span>
+                    </div>
+                    <div class="vo-text">
+                        "GitHub link in description. It's not magic—it's a starting point. Your AI journey starts today. Let's go."
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes">
+                <h3>📌 Production Notes</h3>
+                <ul>
+                    <li><strong>VO Pacing:</strong> Record at 145 words per minute for optimal clarity</li>
+                    <li><strong>Audio Spine:</strong> This 60-second script is the audio pacing guide for the full 90-second video</li>
+                    <li><strong>B-Roll Extension:</strong> B-roll sections (Scenes 3-6) are extended beyond VO timing for maximum clarity</li>
+                    <li><strong>Recording:</strong> Record 2 takes - Take 1: Calm delivery, Take 2: Warmer ending</li>
+                    <li><strong>Tone:</strong> Warm guide, not guru. "We're in this together" energy</li>
+                    <li><strong>Music:</strong> Neutral start → crescendo at 0:55 VO cue (Ólafur Arnalds-style)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Video Production Plan November Week 3</strong></p>
+            <p>Anti-Hype AI Learning Video Series • Educational Content • UK Production</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Created from sanity_check_v5.md specifications</p>
+        </div>
+    </div>
+</body>
+</html>
