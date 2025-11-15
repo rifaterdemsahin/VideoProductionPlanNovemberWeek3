@@ -379,7 +379,7 @@
 
         <section style="margin-top: 3rem; background-color: var(--card-background); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
             <h2 style="color: var(--primary-color); margin-bottom: 1rem;">📊 Version Comparison</h2>
-            <table style="width: 100%; border-collapse: collapse;">
+            <table id="version-table" style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="background-color: var(--primary-color); color: white;">
                         <th style="padding: 1rem; text-align: left;">Version</th>
@@ -387,32 +387,8 @@
                         <th style="padding: 1rem; text-align: left;">Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 1rem; font-weight: bold;">v6</td>
-                        <td style="padding: 1rem;">Complete refinements, final production notes</td>
-                        <td style="padding: 1rem;"><span style="background-color: var(--success-color); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem;">Current</span></td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 1rem; font-weight: bold;">v5</td>
-                        <td style="padding: 1rem;">Time-coded plan, 90s runtime, production ready</td>
-                        <td style="padding: 1rem; color: var(--text-secondary);">Stable</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 1rem; font-weight: bold;">v4</td>
-                        <td style="padding: 1rem;">Enhanced scenes, improved B-roll timing</td>
-                        <td style="padding: 1rem; color: var(--text-secondary);">Archive</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 1rem; font-weight: bold;">v3</td>
-                        <td style="padding: 1rem;">Expanded script, scene breakdowns</td>
-                        <td style="padding: 1rem; color: var(--text-secondary);">Archive</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 1rem; font-weight: bold;">v2</td>
-                        <td style="padding: 1rem;">Script refinements, initial shot planning</td>
-                        <td style="padding: 1rem; color: var(--text-secondary);">Archive</td>
-                    </tr>
+                <tbody id="version-table-body">
+                    <!-- Table rows will be loaded dynamically -->
                 </tbody>
             </table>
         </section>
@@ -424,5 +400,142 @@
             <p style="margin-top: 0.5rem; font-size: 0.9rem;">Track progress, compare versions, and maintain production quality</p>
         </div>
     </footer>
+
+    <script>
+        // Version metadata - update descriptions as needed
+        const versionDescriptions = {
+            2: {
+                title: 'Early Development',
+                description: 'Second iteration with script refinements. Added initial shot planning and production notes.',
+                features: 'Script refinements, initial shot planning'
+            },
+            3: {
+                title: 'Development Phase',
+                description: 'Expanded script with scene breakdowns. Initial timing estimates and shot type specifications.',
+                features: 'Expanded script, scene breakdowns'
+            },
+            4: {
+                title: 'Refinement Phase',
+                description: 'Enhanced scene descriptions and improved B-roll timing. Added detailed visual specifications for screen recordings.',
+                features: 'Enhanced scenes, improved B-roll timing'
+            },
+            5: {
+                title: 'Production Ready',
+                description: 'Time-coded production plan with 90-second runtime. 60-second VO spine with extended B-roll for clarity.',
+                features: 'Time-coded plan, 90s runtime, production ready'
+            },
+            6: {
+                title: 'Major Update',
+                description: 'Complete refinements and final production notes. Includes detailed shot list and timing adjustments.',
+                features: 'Complete refinements, final production notes'
+            },
+            7: {
+                title: 'Latest Revision',
+                description: 'Latest production plan with all refinements and updates. Includes complete shot list, timing adjustments, and final production notes.',
+                features: 'Latest refinements, comprehensive updates'
+            },
+            8: {
+                title: 'Current Version',
+                description: 'Most recent iteration with latest improvements and production specifications.',
+                features: 'Latest improvements, production specs'
+            }
+        };
+
+        // Function to check if a version file exists
+        async function checkVersionExists(version) {
+            try {
+                const response = await fetch(`v${version}.html`, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Function to get version info
+        function getVersionInfo(version) {
+            return versionDescriptions[version] || {
+                title: `Version ${version}`,
+                description: `Production plan version ${version} with improvements and updates.`,
+                features: `Version ${version} updates`
+            };
+        }
+
+        // Function to create a version card
+        function createVersionCard(version, isLatest = false) {
+            const info = getVersionInfo(version);
+            
+            return `
+                <div class="version-card">
+                    <div class="version-header">
+                        <div class="version-number">${version}</div>
+                        <div class="version-title">
+                            <h3>Version ${version} ${isLatest ? '<span class="current-badge">CURRENT</span>' : ''}</h3>
+                            <div class="version-date">${info.title}</div>
+                        </div>
+                    </div>
+                    <div class="version-description">
+                        ${info.description}
+                    </div>
+                    <a href="v${version}.html" class="version-link">View Version ${version} →</a>
+                </div>
+            `;
+        }
+
+        // Function to create table row
+        function createTableRow(version, isLatest = false) {
+            const info = getVersionInfo(version);
+            const status = isLatest 
+                ? '<span style="background-color: var(--success-color); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem;">Current</span>'
+                : '<span style="color: var(--text-secondary);">' + (version >= 5 ? 'Stable' : 'Archive') + '</span>';
+            
+            return `
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 1rem; font-weight: bold;">v${version}</td>
+                    <td style="padding: 1rem;">${info.features}</td>
+                    <td style="padding: 1rem;">${status}</td>
+                </tr>
+            `;
+        }
+
+        // Main function to load all versions
+        async function loadVersions() {
+            const maxVersion = 20; // Check up to version 20
+            const versions = [];
+            
+            // Check which versions exist
+            for (let i = 2; i <= maxVersion; i++) {
+                const exists = await checkVersionExists(i);
+                if (exists) {
+                    versions.push(i);
+                }
+            }
+
+            if (versions.length === 0) {
+                document.getElementById('version-grid').innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No version files found.</p>';
+                return;
+            }
+
+            // Sort versions in descending order (newest first)
+            versions.sort((a, b) => b - a);
+            const latestVersion = versions[0];
+
+            // Generate version cards
+            const versionGrid = document.getElementById('version-grid');
+            versionGrid.innerHTML = versions.map(v => 
+                createVersionCard(v, v === latestVersion)
+            ).join('');
+
+            // Generate table rows
+            const tableBody = document.getElementById('version-table-body');
+            tableBody.innerHTML = versions.map(v => 
+                createTableRow(v, v === latestVersion)
+            ).join('');
+
+            console.log(`Loaded ${versions.length} versions:`, versions);
+        }
+
+        // Load versions when page loads
+        document.addEventListener('DOMContentLoaded', loadVersions);
+    </script>
 </body>
 </html>
