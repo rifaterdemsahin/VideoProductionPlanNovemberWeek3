@@ -613,6 +613,112 @@
         let currentSegment = 0;
         let isAutoScrolling = false;
         let autoScrollInterval;
+        let yamlData = null;
+
+        // Load data from YAML (via JSON conversion)
+        async function loadYAMLData() {
+            try {
+                const response = await fetch('prompter-data.json');
+                yamlData = await response.json();
+                renderContent();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                alert('Failed to load prompter data. Please check the console for details.');
+            }
+        }
+
+        // Render content from YAML data
+        function renderContent() {
+            if (!yamlData) return;
+
+            // Update header
+            document.querySelector('header h1').textContent = yamlData.project.title;
+            const subtitles = document.querySelectorAll('header .subtitle');
+            subtitles[0].textContent = yamlData.project.subtitle;
+            subtitles[1].textContent = `Runtime: ${yamlData.project.runtime} | Launch: ${yamlData.project.launch}`;
+
+            // Update project info
+            const projectInfoGrid = document.querySelector('.project-info-grid');
+            projectInfoGrid.innerHTML = `
+                <div class="info-item">
+                    <strong>Project:</strong>
+                    ${yamlData.project_info.project_name}
+                </div>
+                <div class="info-item">
+                    <strong>Status:</strong>
+                    ${yamlData.project_info.status}
+                </div>
+                <div class="info-item">
+                    <strong>Owner:</strong>
+                    ${yamlData.project_info.owner}
+                </div>
+                <div class="info-item">
+                    <strong>Location:</strong>
+                    ${yamlData.project_info.location}
+                </div>
+                <div class="info-item">
+                    <strong>Primary Asset:</strong>
+                    ${yamlData.project_info.primary_asset}
+                </div>
+                <div class="info-item">
+                    <strong>Series:</strong>
+                    ${yamlData.project_info.series}
+                </div>
+            `;
+
+            // Render voice-over segments
+            const prompterSection = document.querySelector('.prompter-section');
+            const sectionHeader = prompterSection.querySelector('.section-header');
+            
+            // Clear existing segments but keep the header
+            prompterSection.innerHTML = '';
+            prompterSection.appendChild(sectionHeader);
+
+            yamlData.voice_over_segments.forEach(segment => {
+                const segmentDiv = document.createElement('div');
+                segmentDiv.className = 'vo-segment';
+                segmentDiv.id = `segment-${segment.id}`;
+                
+                segmentDiv.innerHTML = `
+                    <div class="time-code">⏱️ ${segment.time_code}</div>
+                    <div class="vo-text">"${segment.text}"</div>
+                    <div class="shot-info">
+                        <strong>Scene ${segment.id}: ${segment.scene.title}</strong>
+                        <div class="shot-details">
+                            <div class="shot-detail-item">
+                                <strong>Shot Type:</strong> ${segment.scene.shot_type}
+                            </div>
+                            <div class="shot-detail-item">
+                                <strong>FPS:</strong> ${segment.scene.fps}
+                            </div>
+                        </div>
+                        <div class="visual-cue">${segment.scene.visual_cue}</div>
+                    </div>
+                    <div class="thumbnail-placeholder">
+                        ${segment.scene.thumbnail}
+                    </div>
+                `;
+                
+                prompterSection.appendChild(segmentDiv);
+            });
+
+            // Render production checklist
+            const checklistContainer = document.querySelector('.production-checklist');
+            const checklistTitle = checklistContainer.querySelector('h3');
+            checklistContainer.innerHTML = '';
+            checklistContainer.appendChild(checklistTitle);
+
+            yamlData.production_checklist.forEach(item => {
+                const checklistItem = document.createElement('div');
+                checklistItem.className = 'checklist-item';
+                const icon = item.status === 'completed' ? '✅' : '⏳';
+                checklistItem.textContent = `${icon} ${item.text}`;
+                checklistContainer.appendChild(checklistItem);
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadYAMLData);
 
         function scrollToNextSegment() {
             const segments = document.querySelectorAll('.vo-segment');
