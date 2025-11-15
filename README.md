@@ -1,6 +1,14 @@
 # VideoProductionPlanNovemberWeek3
 Video Production Plan November Week 3
 
+## 🌐 Live Site
+View the interactive project site: [https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/)
+
+## 📄 Pages
+- [Main Project Overview](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/)
+- [Video Production Prompter](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/prompter.html)
+- [Voice-Over Script](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/voice-over.html)
+
 ## Project Structure
 
 This video production planning project follows a seven-folder organizational structure:

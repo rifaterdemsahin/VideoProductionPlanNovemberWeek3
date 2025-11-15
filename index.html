@@ -42,7 +42,45 @@
             background-color: var(--card-background);
             border-bottom: 1px solid var(--border-color);
             padding: 2rem 0;
+            margin-bottom: 0;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
             margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            display: block;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
+
+        nav a.active {
+            background-color: var(--accent-color);
         }
 
         .header-content {
@@ -243,6 +281,17 @@
             .topic-card {
                 padding: 1.5rem;
             }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            nav a {
+                width: 200px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -259,6 +308,17 @@
             </div>
         </div>
     </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/" class="active">🏠 Home</a></li>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/prompter.html">🎬 Prompter</a></li>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/voice-over.html">🎙️ Voice-Over</a></li>
+                <li><a href="https://github.com/rifaterdemsahin/VideoProductionPlanNovemberWeek3" target="_blank">📦 GitHub Repo</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <main class="container">
         <section class="getting-started">

@@ -30,8 +30,52 @@
             padding: 30px 0;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: rgba(76, 175, 80, 0.2);
+            transition: all 0.3s ease;
+            display: block;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+
+        nav a:hover {
+            background: rgba(76, 175, 80, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        nav a.active {
+            background: #4CAF50;
+            border-color: #4CAF50;
         }
 
         h1 {
@@ -257,6 +301,17 @@
             .btn {
                 width: 100%;
             }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            nav a {
+                width: 200px;
+                text-align: center;
+            }
         }
 
         .scroll-indicator {
@@ -308,6 +363,15 @@
             <div class="subtitle">Day 1: AI Starter That Teaches You (No Copy-Paste)</div>
             <div class="subtitle">Runtime: 90 seconds | Launch: Tuesday, 18 Nov 2025, 9:00 AM GMT</div>
         </header>
+
+        <nav>
+            <ul>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/">🏠 Home</a></li>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/prompter.html" class="active">🎬 Prompter</a></li>
+                <li><a href="https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/voice-over.html">🎙️ Voice-Over</a></li>
+                <li><a href="https://github.com/rifaterdemsahin/VideoProductionPlanNovemberWeek3" target="_blank">📦 GitHub Repo</a></li>
+            </ul>
+        </nav>
 
         <div class="project-info">
             <h3>📋 Project Information</h3>
