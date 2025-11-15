@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Production Prompter - Day 1 AI Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #4CAF50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #aaa;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0b7dda;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+        }
+
+        .prompter-section {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .vo-segment {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .vo-segment:hover {
+            background: rgba(76, 175, 80, 0.2);
+            transform: translateX(5px);
+        }
+
+        .vo-segment.active {
+            background: rgba(76, 175, 80, 0.3);
+            border-left-width: 8px;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .time-code {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .vo-text {
+            font-size: 1.8em;
+            line-height: 1.5;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .shot-info {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .shot-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .shot-detail-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .shot-detail-item strong {
+            color: #2196F3;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .visual-cue {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #FF9800;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .visual-cue::before {
+            content: "📷 Visual: ";
+            font-weight: bold;
+            color: #FF9800;
+            font-style: normal;
+        }
+
+        .section-header {
+            font-size: 2em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .thumbnail-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 225px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            font-size: 1.2em;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .project-info h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .project-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 5px;
+        }
+
+        .info-item strong {
+            color: #2196F3;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .vo-text {
+                font-size: 1.4em;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-indicator:hover {
+            background: #4CAF50;
+            transform: scale(1.1);
+        }
+
+        .production-checklist {
+            background: rgba(244, 67, 54, 0.1);
+            border-left: 4px solid #f44336;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .production-checklist h3 {
+            color: #f44336;
+            margin-bottom: 15px;
+        }
+
+        .checklist-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Video Production Prompter</h1>
+            <div class="subtitle">Day 1: AI Starter That Teaches You (No Copy-Paste)</div>
+            <div class="subtitle">Runtime: 90 seconds | Launch: Tuesday, 18 Nov 2025, 9:00 AM GMT</div>
+        </header>
+
+        <div class="project-info">
+            <h3>📋 Project Information</h3>
+            <div class="project-info-grid">
+                <div class="info-item">
+                    <strong>Project:</strong>
+                    Anti-Hype AI Learning Video (Day 1)
+                </div>
+                <div class="info-item">
+                    <strong>Status:</strong>
+                    PRODUCTION READY - TIME CODED
+                </div>
+                <div class="info-item">
+                    <strong>Owner:</strong>
+                    @rifaterdemsahin
+                </div>
+                <div class="info-item">
+                    <strong>Location:</strong>
+                    UK
+                </div>
+                <div class="info-item">
+                    <strong>Primary Asset:</strong>
+                    Delivery Pilot
+                </div>
+                <div class="info-item">
+                    <strong>Series:</strong>
+                    AI Learning Roadmap
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="toggleAutoScroll()">▶️ Start Auto-Scroll</button>
+            <button class="btn btn-secondary" onclick="scrollToTop()">⬆️ Back to Top</button>
+            <button class="btn btn-danger" onclick="resetView()">🔄 Reset View</button>
+        </div>
+
+        <div class="prompter-section">
+            <h2 class="section-header">Voice Over Script (60-Second Spine)</h2>
+
+            <div class="vo-segment" id="segment-1">
+                <div class="time-code">⏱️ 0:00 - 0:03 (3s)</div>
+                <div class="vo-text">"Stuck in the AI boom and don't know where to start?"</div>
+                <div class="shot-info">
+                    <strong>Scene 1: RELATABLE PAIN</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> MEDIUM CU (A-Roll)
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 24
+                        </div>
+                    </div>
+                    <div class="visual-cue">You at desk, 5+ tutorial tabs open, slight head shake.</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 1: Overwhelmed at Desk<br>
+                    (5+ AI Tutorial Tabs Open)
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-2">
+                <div class="time-code">⏱️ 0:03 - 0:08 (5s)</div>
+                <div class="vo-text">"In 60 seconds, I'll give you a learning starter that teaches you real AI—not just copy-paste."</div>
+                <div class="shot-info">
+                    <strong>Scene 2: HONEST PROMISE</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> MEDIUM SHOT (A-Roll)
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 24
+                        </div>
+                    </div>
+                    <div class="visual-cue">Turn to camera, warm eye contact, subtle nod.</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 2: Direct to Camera<br>
+                    (Warm, Trustworthy Eye Contact)
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-3">
+                <div class="time-code">⏱️ 0:08 - 0:15 (7s)</div>
+                <div class="vo-text">"Everyone says 'learn AI'—but where do you actually begin? You need a foundation you can understand and build on."</div>
+                <div class="shot-info">
+                    <strong>Scene 3: REAL PROBLEM (Breathe - 10s)</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> SCREEN INSERT
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 60
+                        </div>
+                    </div>
+                    <div class="visual-cue">Fast montage of "AI in 24hrs," "No Code AI," "Earn £10k/mo" thumbnails. Hold the final image for 2s to let the feeling sink in.</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 3: Hype Montage<br>
+                    ("AI in 24hrs" / "Earn £10k/mo" Thumbnails)
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-4">
+                <div class="time-code">⏱️ 0:15 - 0:25 (10s)</div>
+                <div class="vo-text">"This Build-Your-Own-Model template isn't finished code—it's your learning lab. Every line is commented to explain what it does and why."</div>
+                <div class="shot-info">
+                    <strong>Scene 4: LEARNING TOOL (Breathe - 15s)</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> SCREEN RECORD
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 60
+                        </div>
+                    </div>
+                    <div class="visual-cue">VS Code: Slow pan across the comments in the define_model function. Highlight: "// This loads your data..." comment is visible and highlighted with a yellow glow.</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 4: VS Code with Comments<br>
+                    (Yellow Highlight on "// This loads your data...")
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-5">
+                <div class="time-code">⏱️ 0:25 - 0:35 (10s)</div>
+                <div class="vo-text">"Fork it. Read the comments. Change one function. Break it. Fix it. That's how you actually learn. It's called Delivery Pilot—your AI training ground."</div>
+                <div class="shot-info">
+                    <strong>Scene 5: PRACTICE METHOD (CRITICAL SECTION - 20s)</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> SCREEN RECORD
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 60
+                        </div>
+                    </div>
+                    <div class="visual-cue">
+                        The "Break-Fix Loop" (VO plays over this extended sequence):<br>
+                        1. Show GitHub Fork & Clone in terminal (5s)<br>
+                        2. Run install & Green Check Output (3s)<br>
+                        3. Deliberate Break: Edit load_data function to cause an error (2s)<br>
+                        4. Run → Red Error Text fills terminal (Hold 4s)<br>
+                        5. Fix the code (2s)<br>
+                        6. Run → Green Check Output (Hold 4s)
+                    </div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 5: Break-Fix Loop<br>
+                    (Terminal: Fork → Error → Fix → Success)
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-6">
+                <div class="time-code">⏱️ 0:35 - 0:45 (10s)</div>
+                <div class="vo-text">"Deploy it locally—your private practice environment. Make mistakes. That's the point."</div>
+                <div class="shot-info">
+                    <strong>Scene 6: SAFE SPACE (Breathe - 12s)</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> SPLIT-SCREEN
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 60
+                        </div>
+                    </div>
+                    <div class="visual-cue">Left: Terminal Error (Red Text) → Right: Fixed Output (Green Check). Label: Break → Learn → Fix. Hold the graphic for 3s.</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 6: Split Screen<br>
+                    (Left: Error | Right: Success | Label: "Break → Learn → Fix")
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-7">
+                <div class="time-code">⏱️ 0:45 - 0:55 (10s)</div>
+                <div class="vo-text">"This is Day 1 of understanding AI. Not the finish line. Customize it. Study it. Make it yours over the next week."</div>
+                <div class="shot-info">
+                    <strong>Scene 7: MOTIVATION (15s)</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> SLOW PUSH-IN (A-Roll)
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 24
+                        </div>
+                    </div>
+                    <div class="visual-cue">Genuine eye contact, soft smile. VO Playback: "This is Day 1 of understanding AI... customize it... over the next week."</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 7: Motivational Close-up<br>
+                    (Genuine Eye Contact, Soft Smile)
+                </div>
+            </div>
+
+            <div class="vo-segment" id="segment-8">
+                <div class="time-code">⏱️ 0:55 - 1:00 (5s)</div>
+                <div class="vo-text">"GitHub link in description. It's not magic—it's a starting point. Your AI journey starts today. Let's go."</div>
+                <div class="shot-info">
+                    <strong>Scene 8: EMPOWERING CTA (10s)</strong>
+                    <div class="shot-details">
+                        <div class="shot-detail-item">
+                            <strong>Shot Type:</strong> CLEAN CARD
+                        </div>
+                        <div class="shot-detail-item">
+                            <strong>FPS:</strong> 24
+                        </div>
+                    </div>
+                    <div class="visual-cue">Card with text: GitHub → Delivery Pilot + QR code. Music crescendos. Final Push-in/Motivational Ending plays over the last 5s before fading to black.</div>
+                </div>
+                <div class="thumbnail-placeholder">
+                    📸 Scene 8: End Card<br>
+                    (GitHub Link + QR Code + "Delivery Pilot")
+                </div>
+            </div>
+        </div>
+
+        <div class="production-checklist">
+            <h3>🛠️ Production Checklist</h3>
+            <div class="checklist-item">✅ Pre-Production: Script Finalized (60s VO spine)</div>
+            <div class="checklist-item">✅ Pre-Production: Shot List Locked and Time-Coded (90s total)</div>
+            <div class="checklist-item">✅ Pre-Production: Delivery Pilot B-roll steps defined</div>
+            <div class="checklist-item">⏳ Production (Shoot): Record VO (145 WPM)</div>
+            <div class="checklist-item">⏳ Production (Shoot): Record A-Roll (Face-to-camera, 24fps)</div>
+            <div class="checklist-item">⏳ Production (Shoot): Record B-Roll (Screen) - All new, time-coded steps</div>
+            <div class="checklist-item">⏳ Post-Production: Edit Pacing (Hit the 1:30 mark exactly)</div>
+            <div class="checklist-item">⏳ Post-Production: Edit Graphics (Text overlays, yellow glow, break/fix labels)</div>
+            <div class="checklist-item">⏳ Post-Production: Audio - Music (Neutral start → crescendo at 0:55 VO cue)</div>
+            <div class="checklist-item">⏳ Go-Live: Upload - Schedule for Tuesday 18 Nov, 9:00 AM GMT</div>
+            <div class="checklist-item">⏳ Go-Live: Setup Community (Prepare "START" comment auto-reply)</div>
+        </div>
+    </div>
+
+    <div class="scroll-indicator" onclick="scrollToNextSegment()" title="Scroll to next segment">
+        ⬇️
+    </div>
+
+    <script>
+        let currentSegment = 0;
+        let isAutoScrolling = false;
+        let autoScrollInterval;
+
+        function scrollToNextSegment() {
+            const segments = document.querySelectorAll('.vo-segment');
+            if (currentSegment < segments.length) {
+                segments[currentSegment].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Remove active class from all segments
+                segments.forEach(seg => seg.classList.remove('active'));
+                
+                // Add active class to current segment
+                segments[currentSegment].classList.add('active');
+                
+                currentSegment++;
+                
+                if (currentSegment >= segments.length) {
+                    currentSegment = 0;
+                }
+            }
+        }
+
+        function toggleAutoScroll() {
+            const btn = event.target;
+            if (!isAutoScrolling) {
+                isAutoScrolling = true;
+                btn.textContent = '⏸️ Pause Auto-Scroll';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-danger');
+                
+                // Auto-scroll every 8 seconds
+                autoScrollInterval = setInterval(() => {
+                    scrollToNextSegment();
+                }, 8000);
+                
+                // Start immediately
+                scrollToNextSegment();
+            } else {
+                isAutoScrolling = false;
+                btn.textContent = '▶️ Start Auto-Scroll';
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-primary');
+                clearInterval(autoScrollInterval);
+                
+                // Remove active class from all segments
+                document.querySelectorAll('.vo-segment').forEach(seg => seg.classList.remove('active'));
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            currentSegment = 0;
+            document.querySelectorAll('.vo-segment').forEach(seg => seg.classList.remove('active'));
+        }
+
+        function resetView() {
+            if (isAutoScrolling) {
+                const btn = document.querySelector('.btn-primary, .btn-danger');
+                if (btn) {
+                    btn.click();
+                }
+            }
+            scrollToTop();
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                scrollToNextSegment();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (currentSegment > 0) {
+                    currentSegment -= 2;
+                    scrollToNextSegment();
+                }
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                scrollToTop();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                toggleAutoScroll();
+            }
+        });
+
+        // Show/hide scroll indicator based on scroll position
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100) {
+                scrollIndicator.style.opacity = '1';
+            } else {
+                scrollIndicator.style.opacity = '0.7';
+            }
+        });
+    </script>
+</body>
+</html>
