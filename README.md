@@ -8,6 +8,7 @@ View the interactive project site: [https://rifaterdemsahin.github.io/VideoProdu
 - [Main Project Overview](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/)
 - [Video Production Prompter](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/prompter.html)
 - [Voice-Over Script](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/voice-over.html)
+- [Marp Presentation](https://rifaterdemsahin.github.io/VideoProductionPlanNovemberWeek3/marp.html)
 
 ## Project Structure
 
