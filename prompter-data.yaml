@@ -1,0 +1,128 @@
+# Video Production Prompter Data
+# Day 1: AI Starter That Teaches You (No Copy-Paste)
+
+project:
+  title: "🎬 Video Production Prompter"
+  subtitle: "Day 1: AI Starter That Teaches You (No Copy-Paste)"
+  runtime: "90 seconds"
+  launch: "Tuesday, 18 Nov 2025, 9:00 AM GMT"
+  
+project_info:
+  project_name: "Anti-Hype AI Learning Video (Day 1)"
+  status: "PRODUCTION READY - TIME CODED"
+  owner: "@rifaterdemsahin"
+  location: "UK"
+  primary_asset: "Delivery Pilot"
+  series: "AI Learning Roadmap"
+
+voice_over_segments:
+  - id: 1
+    time_code: "0:00 - 0:03 (3s)"
+    text: "Stuck in the AI boom and don't know where to start?"
+    scene:
+      title: "RELATABLE PAIN"
+      shot_type: "MEDIUM CU (A-Roll)"
+      fps: 24
+      visual_cue: "You at desk, 5+ tutorial tabs open, slight head shake."
+      thumbnail: "📸 Scene 1: Overwhelmed at Desk<br>(5+ AI Tutorial Tabs Open)"
+  
+  - id: 2
+    time_code: "0:03 - 0:08 (5s)"
+    text: "In 60 seconds, I'll give you a learning starter that teaches you real AI—not just copy-paste."
+    scene:
+      title: "HONEST PROMISE"
+      shot_type: "MEDIUM SHOT (A-Roll)"
+      fps: 24
+      visual_cue: "Turn to camera, warm eye contact, subtle nod."
+      thumbnail: "📸 Scene 2: Direct to Camera<br>(Warm, Trustworthy Eye Contact)"
+  
+  - id: 3
+    time_code: "0:08 - 0:15 (7s)"
+    text: "Everyone says 'learn AI'—but where do you actually begin? You need a foundation you can understand and build on."
+    scene:
+      title: "REAL PROBLEM (Breathe - 10s)"
+      shot_type: "SCREEN INSERT"
+      fps: 60
+      visual_cue: "Fast montage of \"AI in 24hrs,\" \"No Code AI,\" \"Earn £10k/mo\" thumbnails. Hold the final image for 2s to let the feeling sink in."
+      thumbnail: "📸 Scene 3: Hype Montage<br>(\"AI in 24hrs\" / \"Earn £10k/mo\" Thumbnails)"
+  
+  - id: 4
+    time_code: "0:15 - 0:25 (10s)"
+    text: "This Build-Your-Own-Model template isn't finished code—it's your learning lab. Every line is commented to explain what it does and why."
+    scene:
+      title: "LEARNING TOOL (Breathe - 15s)"
+      shot_type: "SCREEN RECORD"
+      fps: 60
+      visual_cue: "VS Code: Slow pan across the comments in the define_model function. Highlight: \"// This loads your data...\" comment is visible and highlighted with a yellow glow."
+      thumbnail: "📸 Scene 4: VS Code with Comments<br>(Yellow Highlight on \"// This loads your data...\")"
+  
+  - id: 5
+    time_code: "0:25 - 0:35 (10s)"
+    text: "Fork it. Read the comments. Change one function. Break it. Fix it. That's how you actually learn. It's called Delivery Pilot—your AI training ground."
+    scene:
+      title: "PRACTICE METHOD (CRITICAL SECTION - 20s)"
+      shot_type: "SCREEN RECORD"
+      fps: 60
+      visual_cue: |
+        The "Break-Fix Loop" (VO plays over this extended sequence):
+        1. Show GitHub Fork & Clone in terminal (5s)
+        2. Run install & Green Check Output (3s)
+        3. Deliberate Break: Edit load_data function to cause an error (2s)
+        4. Run → Red Error Text fills terminal (Hold 4s)
+        5. Fix the code (2s)
+        6. Run → Green Check Output (Hold 4s)
+      thumbnail: "📸 Scene 5: Break-Fix Loop<br>(Terminal: Fork → Error → Fix → Success)"
+  
+  - id: 6
+    time_code: "0:35 - 0:45 (10s)"
+    text: "Deploy it locally—your private practice environment. Make mistakes. That's the point."
+    scene:
+      title: "SAFE SPACE (Breathe - 12s)"
+      shot_type: "SPLIT-SCREEN"
+      fps: 60
+      visual_cue: "Left: Terminal Error (Red Text) → Right: Fixed Output (Green Check). Label: Break → Learn → Fix. Hold the graphic for 3s."
+      thumbnail: "📸 Scene 6: Split Screen<br>(Left: Error | Right: Success | Label: \"Break → Learn → Fix\")"
+  
+  - id: 7
+    time_code: "0:45 - 0:55 (10s)"
+    text: "This is Day 1 of understanding AI. Not the finish line. Customize it. Study it. Make it yours over the next week."
+    scene:
+      title: "MOTIVATION (15s)"
+      shot_type: "SLOW PUSH-IN (A-Roll)"
+      fps: 24
+      visual_cue: "Genuine eye contact, soft smile. VO Playback: \"This is Day 1 of understanding AI... customize it... over the next week.\""
+      thumbnail: "📸 Scene 7: Motivational Close-up<br>(Genuine Eye Contact, Soft Smile)"
+  
+  - id: 8
+    time_code: "0:55 - 1:00 (5s)"
+    text: "GitHub link in description. It's not magic—it's a starting point. Your AI journey starts today. Let's go."
+    scene:
+      title: "EMPOWERING CTA (10s)"
+      shot_type: "CLEAN CARD"
+      fps: 24
+      visual_cue: "Card with text: GitHub → Delivery Pilot + QR code. Music crescendos. Final Push-in/Motivational Ending plays over the last 5s before fading to black."
+      thumbnail: "📸 Scene 8: End Card<br>(GitHub Link + QR Code + \"Delivery Pilot\")"
+
+production_checklist:
+  - text: "Pre-Production: Script Finalized (60s VO spine)"
+    status: "completed"
+  - text: "Pre-Production: Shot List Locked and Time-Coded (90s total)"
+    status: "completed"
+  - text: "Pre-Production: Delivery Pilot B-roll steps defined"
+    status: "completed"
+  - text: "Production (Shoot): Record VO (145 WPM)"
+    status: "pending"
+  - text: "Production (Shoot): Record A-Roll (Face-to-camera, 24fps)"
+    status: "pending"
+  - text: "Production (Shoot): Record B-Roll (Screen) - All new, time-coded steps"
+    status: "pending"
+  - text: "Post-Production: Edit Pacing (Hit the 1:30 mark exactly)"
+    status: "pending"
+  - text: "Post-Production: Edit Graphics (Text overlays, yellow glow, break/fix labels)"
+    status: "pending"
+  - text: "Post-Production: Audio - Music (Neutral start → crescendo at 0:55 VO cue)"
+    status: "pending"
+  - text: "Go-Live: Upload - Schedule for Tuesday 18 Nov, 9:00 AM GMT"
+    status: "pending"
+  - text: "Go-Live: Setup Community (Prepare \"START\" comment auto-reply)"
+    status: "pending"
