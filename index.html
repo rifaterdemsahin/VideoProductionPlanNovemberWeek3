@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Production Plan - November Week 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5282;
+            --secondary-color: #4a5568;
+            --accent-color: #3182ce;
+            --background: #f7fafc;
+            --card-background: #ffffff;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-background);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Grid */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Topic Card */
+        .topic-card {
+            background: var(--card-background);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .topic-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .topic-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .topic-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .topic-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-contents {
+            margin-top: 1rem;
+        }
+
+        .topic-contents h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-contents ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .topic-contents li {
+            padding: 0.25rem 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .topic-contents li::before {
+            content: "→";
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .topic-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: background-color 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .topic-link:hover {
+            background-color: var(--accent-color);
+        }
+
+        .topic-link::after {
+            content: "→";
+            margin-left: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-background);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        /* Getting Started Section */
+        .getting-started {
+            background: var(--card-background);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .getting-started h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        .getting-started p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .topic-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Video Production Plan</h1>
+                <p class="subtitle">November Week 3</p>
+                <p class="description">
+                    A comprehensive seven-folder organizational structure for managing video production projects
+                    from objectives to validation.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="getting-started">
+            <h2>Getting Started</h2>
+            <p>
+                Navigate through each section below to explore the different aspects of the video production project.
+                Each folder contains detailed documentation and resources specific to its purpose in the production workflow.
+            </p>
+        </section>
+
+        <section class="topics-grid">
+            <!-- Topic 1: Real -->
+            <article class="topic-card">
+                <div class="topic-number">1</div>
+                <h2 class="topic-title">Real</h2>
+                <p class="topic-name">Objectives (OKRs)</p>
+                <p class="topic-description">
+                    Defines the objectives and key results for the video production project. Contains project goals,
+                    success metrics, and OKR tracking.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Project objectives</li>
+                        <li>Key results and success metrics</li>
+                        <li>OKR tracking</li>
+                    </ul>
+                </div>
+                <a href="1_Real/README.md" class="topic-link">View Details</a>
+            </article>
+
+            <!-- Topic 2: Environment -->
+            <article class="topic-card">
+                <div class="topic-number">2</div>
+                <h2 class="topic-title">Environment</h2>
+                <p class="topic-name">Roadmap and Use Cases</p>
+                <p class="topic-description">
+                    Contains the project roadmap, timeline, milestones, and detailed use case scenarios for video production.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Project roadmap</li>
+                        <li>Timeline and milestones</li>
+                        <li>Use case scenarios</li>
+                    </ul>
+                </div>
+                <a href="2_Environment/README.md" class="topic-link">View Details</a>
+            </article>
+
+            <!-- Topic 3: UI -->
+            <article class="topic-card">
+                <div class="topic-number">3</div>
+                <h2 class="topic-title">UI</h2>
+                <p class="topic-name">Expected Visuals</p>
+                <p class="topic-description">
+                    Houses the expected visuals, UI/UX designs, storyboards, and design specifications for the video production.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Visual mockups</li>
+                        <li>UI/UX designs</li>
+                        <li>Storyboards</li>
+                        <li>Asset specifications</li>
+                    </ul>
+                </div>
+                <a href="3_UI/README.md" class="topic-link">View Details</a>
+            </article>
+
+            <!-- Topic 4: Formula -->
+            <article class="topic-card">
+                <div class="topic-number">4</div>
+                <h2 class="topic-title">Formula</h2>
+                <p class="topic-name">Guides and Best Practices</p>
+                <p class="topic-description">
+                    Holds production guides, best practices documentation, process templates, and methodology standards.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Production guides</li>
+                        <li>Best practices</li>
+                        <li>Process templates</li>
+                        <li>Methodology standards</li>
+                    </ul>
+                </div>
+                <a href="4_Formula/README.md" class="topic-link">View Details</a>
+            </article>
+
+            <!-- Topic 5: Symbols -->
+            <article class="topic-card">
+                <div class="topic-number">5</div>
+                <h2 class="topic-title">Symbols</h2>
+                <p class="topic-name">Core Source Code</p>
+                <p class="topic-description">
+                    Contains all source code, scripts, automation tools, and technical implementations for the project.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Source code files</li>
+                        <li>Scripts and automation</li>
+                        <li>Configuration files</li>
+                        <li>Technical implementations</li>
+                    </ul>
+                </div>
+                <a href="5_Symbols/README.md" class="topic-link">View Details</a>
+            </article>
+
+            <!-- Topic 6: Semblance -->
+            <article class="topic-card">
+                <div class="topic-number">6</div>
+                <h2 class="topic-title">Semblance</h2>
+                <p class="topic-name">Errors and Solutions</p>
+                <p class="topic-description">
+                    Logs errors encountered during production along with their solutions, troubleshooting guides, and lessons learned.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Error logs</li>
+                        <li>Solutions and fixes</li>
+                        <li>Troubleshooting guides</li>
+                        <li>Lessons learned</li>
+                    </ul>
+                </div>
+                <a href="6_Semblance/README.md" class="topic-link">View Details</a>
+            </article>
+
+            <!-- Topic 7: Testing -->
+            <article class="topic-card">
+                <div class="topic-number">7</div>
+                <h2 class="topic-title">Testing</h2>
+                <p class="topic-name">Validation</p>
+                <p class="topic-description">
+                    Handles all testing and validation activities, including test plans, test cases, and quality assurance documentation.
+                </p>
+                <div class="topic-contents">
+                    <h4>Contains</h4>
+                    <ul>
+                        <li>Test plans</li>
+                        <li>Test cases</li>
+                        <li>QA documentation</li>
+                        <li>Validation reports</li>
+                    </ul>
+                </div>
+                <a href="7_Testing/README.md" class="topic-link">View Details</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Video Production Plan November Week 3. All rights reserved.</p>
+            <p>Seven-folder organizational structure for video production excellence.</p>
+        </div>
+    </footer>
+</body>
+</html>
