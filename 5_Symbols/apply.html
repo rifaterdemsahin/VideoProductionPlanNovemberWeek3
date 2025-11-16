@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Journey - Your Path to Success</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            min-height: 100vh;
+            /* Allow scrolling for auto-scroll */
+            overflow-y: scroll;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d4ff, #b347ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: #00ffff;
+            margin-top: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00d4ff, #b347ff, #00ff88);
+            transform: translateX(-50%);
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 80px;
+            opacity: 0;
+            /* Keep original fade-in */
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.2s; }
+        .step:nth-child(2) { animation-delay: 0.4s; }
+        .step:nth-child(3) { animation-delay: 0.6s; }
+        .step:nth-child(4) { animation-delay: 0.8s; }
+        .step:nth-child(5) { animation-delay: 1s; }
+        .step:nth-child(6) { animation-delay: 1.2s; }
+        .step:nth-child(7) { animation-delay: 1.4s; }
+        .step:nth-child(8) { animation-delay: 1.6s; }
+
+        .step-content {
+            width: 45%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.3s ease;
+            /* Add transition for scale animation */
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth zoom transition */
+            transform: scale(1); /* Initial state */
+        }
+
+        /* Zoom Animation for Active Step */
+        .step-content.zoomed {
+            transform: scale(1.05);
+            border-color: #00ffff; /* Highlight border on zoom */
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.5);
+        }
+        /* Reset state on hover is now managed by JS to avoid conflicts with auto-scroll zoom */
+        .step-content:not(.zoomed):hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .step:nth-child(odd) .step-content {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .step:nth-child(even) .step-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00d4ff, #b347ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: 4px solid #0a0e27;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Rest of the styles remain the same for brevity... */
+
+        .step-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .step-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .step-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .step-details {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #00d4ff;
+            margin-top: 15px;
+        }
+
+        .step-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-details li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .step-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .action-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #b347ff, #00d4ff);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 60px 30px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(179, 71, 255, 0.1));
+            border-radius: 20px;
+            border: 2px solid #00d4ff;
+            animation: pulse 2s ease infinite;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #b347ff);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.6);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .step-content {
+                width: calc(100% - 80px);
+                margin-left: 60px !important;
+            }
+
+            .step-number {
+                left: 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Your AI Learning Journey</h1>
+            <p>Follow these steps to master AI with DeliveryPilot</p>
+        </div>
+
+        <div class="timeline">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <span class="step-icon">🔗</span>
+                    <h3 class="step-title">Visit the GitHub Repository</h3>
+                    <p class="step-description">
+                        Start your journey by accessing the DeliveryPilot template repository. This is your foundation for hands-on AI learning.
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Navigate to the provided GitHub link</li>
+                            <li>Review the repository structure</li>
+                            <li>Read the README for overview</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">📍 Action Required</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <span class="step-icon">🔀</span>
+                    <h3 class="step-title">Fork the Repository</h3>
+                    <p class="step-description">
+                        Click the "Fork" button in the top-right corner to create your own copy of the project. This makes it yours to experiment with!
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Click "Fork" in top-right corner</li>
+                            <li>Choose your GitHub account</li>
+                            <li>Rename if desired (optional)</li>
+                            <li>Wait for forking to complete</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">🎯 Easy Step</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <span class="step-icon">☁️</span>
+                    <h3 class="step-title">Create GitHub Codespace</h3>
+                    <p class="step-description">
+                        Launch your cloud-based development environment. No local setup needed - everything runs in the browser!
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Click the green "Code" button</li>
+                            <li>Select "Codespaces" tab</li>
+                            <li>Click "Create codespace on main"</li>
+                            <li>Wait for environment to initialize</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">⚡ Cloud Power</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <span class="step-icon">🤖</span>
+                    <h3 class="step-title">Enable AI Agent (Copilot)</h3>
+                    <p class="step-description">
+                        Activate your AI coding assistant to help you learn and build. This is your personal AI teacher!
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Sign in when prompted</li>
+                            <li>Enable AI features</li>
+                            <li>Accept permissions</li>
+                            <li>Chat interface will appear</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">🧠 AI Assistant</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <span class="step-icon">📚</span>
+                    <h3 class="step-title">Explore the Structure</h3>
+                    <p class="step-description">
+                        Navigate through the Journey, Formulas, Symbols, and Semblance folders. Each contains learning materials and code.
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li><strong>Journey:</strong> Your learning path & objectives</li>
+                            <li><strong>Formulas:</strong> GPT-generated code explanations</li>
+                            <li><strong>Symbols:</strong> Python code files</li>
+                            <li><strong>Semblance:</strong> Error examples & fixes</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">🗺️ Explore</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <span class="step-icon">⚙️</span>
+                    <h3 class="step-title">Setup & Run the Project</h3>
+                    <p class="step-description">
+                        Let the AI agent help you install dependencies and run the RAG (Retrieval Augmented Generation) project.
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>AI will create virtual environment</li>
+                            <li>Install required libraries automatically</li>
+                            <li>Index sample documents</li>
+                            <li>Run semantic search tests</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">🔧 Setup</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <span class="step-icon">🧪</span>
+                    <h3 class="step-title">Experiment & Make Mistakes</h3>
+                    <p class="step-description">
+                        Add new documents, modify code, break things and fix them. This is YOUR learning lab - mistakes are encouraged!
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Add your own markdown documents</li>
+                            <li>Test semantic search queries</li>
+                            <li>Modify Python code</li>
+                            <li>Use AI agent to debug issues</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">💡 Learn by Doing</span>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <span class="step-icon">✅</span>
+                    <h3 class="step-title">Complete & Commit Your Work</h3>
+                    <p class="step-description">
+                        Save your progress with Git commits. Document what you learned in the Formulas folder for future reference.
+                    </p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Use .gitignore for virtual env files</li>
+                            <li>Commit your changes</li>
+                            <li>Push to your forked repository</li>
+                            <li>Review your Objectives & Key Results</li>
+                        </ul>
+                    </div>
+                    <span class="action-badge">🎓 Achievement</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>🎉 Ready to Transform Your AI Skills?</h2>
+            <p style="font-size: 1.2em; margin: 20px 0; color: #e0e0e0;">
+                Your AI journey starts today. Fork the repo, start learning, and build real AI projects!
+            </p>
+            <a href="#" class="cta-button">🚀 Start Now</a>
+            <a href="#" class="cta-button" style="background: linear-gradient(135deg, #00ff88, #00d4ff);">📧 Sign Up for Updates</a>
+            <p style="margin-top: 30px; color: #00ffff; font-size: 1.1em;">
+                ⭐ Join thousands learning AI the right way - by doing!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = document.querySelectorAll('.step');
+            const stepContents = document.querySelectorAll('.step-content');
+            let currentStepIndex = 0;
+            let scrollTimer;
+            let isAutoScrolling = false;
+            let lastManualScrollTime = 0;
+            // Adjustable speed: lower interval = faster scroll
+            const scrollInterval = 4000; // 4000ms (4 seconds) delay between steps
+
+            function zoomStep(index) {
+                // Remove zoom from all steps
+                stepContents.forEach(content => {
+                    content.classList.remove('zoomed');
+                });
+
+                // Apply zoom to the current step
+                if (index >= 0 && index < steps.length) {
+                    const currentStepContent = steps[index].querySelector('.step-content');
+                    currentStepContent.classList.add('zoomed');
+                }
+            }
+
+            function autoScroll() {
+                // If we've reached the end, scroll to CTA and then reset
+                if (currentStepIndex >= steps.length) {
+                    const ctaSection = document.querySelector('.cta-section');
+                    if (ctaSection) {
+                        isAutoScrolling = true;
+                        ctaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    
+                    // Reset and loop back to the beginning
+                    setTimeout(() => {
+                        isAutoScrolling = true;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        currentStepIndex = 0;
+                        
+                        // Wait for scroll to complete, then start over
+                        setTimeout(() => {
+                            autoScroll();
+                        }, 1000);
+                    }, 6000); // Pause on CTA for 6 seconds
+                    return; 
+                }
+
+                // Get the current step element
+                const currentStep = steps[currentStepIndex];
+                
+                // Mark that we're auto-scrolling
+                isAutoScrolling = true;
+                
+                // Scroll the current step into view (center alignment)
+                currentStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Animate the zoom
+                zoomStep(currentStepIndex);
+
+                // Reset auto-scroll flag after animation completes
+                setTimeout(() => {
+                    isAutoScrolling = false;
+                }, 1000);
+
+                // Move to the next step
+                currentStepIndex++;
+            }
+
+            function startAutoScroll() {
+                // Clear any existing timer
+                if (scrollTimer) {
+                    clearInterval(scrollTimer);
+                }
+                
+                // Start the auto-scroll process
+                scrollTimer = setInterval(autoScroll, scrollInterval);
+                
+                // Initial call to start immediately
+                setTimeout(autoScroll, 1000);
+            }
+
+            function stopAutoScroll() {
+                if (scrollTimer) {
+                    clearInterval(scrollTimer);
+                    scrollTimer = null;
+                }
+                // Remove all zoom effects
+                stepContents.forEach(content => {
+                    content.classList.remove('zoomed');
+                });
+            }
+
+            // Detect manual scrolling
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                // Don't interrupt if we're auto-scrolling
+                if (isAutoScrolling) {
+                    return;
+                }
+                
+                // Track manual scroll
+                lastManualScrollTime = Date.now();
+                
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    // If it's been more than 500ms since last manual scroll and we're not auto-scrolling
+                    if (!isAutoScrolling && Date.now() - lastManualScrollTime >= 500) {
+                        stopAutoScroll();
+                        console.log("Auto-scroll stopped - user is manually scrolling");
+                    }
+                }, 500);
+            }, { passive: true });
+
+            // Start the auto-scroll on page load
+            startAutoScroll();
+        });
+    </script>
+</body>
+</html>
